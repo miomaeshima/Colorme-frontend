@@ -1,0 +1,10 @@
+{
+  "name": "testColorName",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "colorthief": "^2.3.2",
+    "http-server": "^0.12.3"
+  }
+}

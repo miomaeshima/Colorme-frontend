@@ -1,0 +1,51 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* #title {
+  display: flex;
+  font-size: 60px;
+  writing-mode: vertical-rl;
+  align-items: center;
+  justify-content: center;
+  padding-top: 70px;
+  padding-bottom: 70px;
+} */
+.container {
+  display: flex;
+  flex-direction: row;
+  min-width: 100vw;
+  min-height: 100vh;
+  margin-bottom: 30px;
+}
+
+img {
+  height: 700px;
+  width: 700px;
+  object-fit: cover;
+}
+.namebox {
+  display: flex;
+  font-size: 50px;
+  writing-mode: vertical-rl;
+  align-items: center;
+  flex: 1;
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+.namebox2 {
+  display: flex;
+  font-size: 50px;
+  writing-mode: vertical-rl;
+  align-items: center;
+  flex: 1;
+  padding-top: 70px;
+  padding-bottom: 70px;
+  color: white;
+}
+/* #fujisanName {
+  width: 600px;
+  min-height: 100vh;
+  background-color: darksalmon;
+} */
