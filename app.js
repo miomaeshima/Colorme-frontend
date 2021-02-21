@@ -3,15 +3,15 @@ import ColorThief from "./node_modules/colorthief/dist/color-thief.mjs";
 const colorThief = new ColorThief();
 
 //画像を変数に入れる。
-const tsubaki = document.getElementById("tsubaki");
-const fuji = document.getElementById("fuji");
-const cherry = document.getElementById("cherry");
-const christmascc = document.getElementById("christmascc");
-const fujisan = document.getElementById("fujisan");
-const maple = document.getElementById("maple");
-const rice = document.getElementById("rice");
-const yoron = document.getElementById("yoron");
-const christmas = document.getElementById("christmas");
+// const tsubaki = document.getElementById("tsubaki");
+// const fuji = document.getElementById("fuji");
+// const cherry = document.getElementById("cherry");
+// const christmascc = document.getElementById("christmascc");
+// const fujisan = document.getElementById("fujisan");
+// const maple = document.getElementById("maple");
+// const rice = document.getElementById("rice");
+// const yoron = document.getElementById("yoron");
+// const christmas = document.getElementById("christmas");
 
 //rgbをもとにpythonにリクエストを投げて、一番近い色の名前をとってくる関数
 const getName = async (value) => {
@@ -53,13 +53,13 @@ const getRgb = (e) => {
   }
 };
 
-tsubaki.addEventListener("click", getRgb);
-cherry.addEventListener("click", getRgb);
-christmas.addEventListener("click", getRgb);
-rice.addEventListener("click", getRgb);
-yoron.addEventListener("click", getRgb);
-maple.addEventListener("click", getRgb);
-fujisan.addEventListener("click", getRgb);
+
+let picArray = document.getElementsByTagName("img");
+
+for (let i = 0; i < picArray.length; i++) {
+  picArray[i].addEventListener("click", getRgb);
+}
+
 
 fetch("http://localhost:5000/getname")
   .then((res) => res.json())
