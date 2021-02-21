@@ -1,19 +1,7 @@
 import ColorThief from "./node_modules/colorthief/dist/color-thief.mjs";
-
 const colorThief = new ColorThief();
 
-//画像を変数に入れる。
-// const tsubaki = document.getElementById("tsubaki");
-// const fuji = document.getElementById("fuji");
-// const cherry = document.getElementById("cherry");
-// const christmascc = document.getElementById("christmascc");
-// const fujisan = document.getElementById("fujisan");
-// const maple = document.getElementById("maple");
-// const rice = document.getElementById("rice");
-// const yoron = document.getElementById("yoron");
-// const christmas = document.getElementById("christmas");
-
-//rgbをもとにpythonにリクエストを投げて、一番近い色の名前をとってくる関数
+//rgbをもとにバックエンドのpythonにリクエストを投げて、一番近い色の名前をとってくる関数
 const getName = async (value) => {
   const body = value;
   const response = await fetch("http://localhost:5000/getclosestcolor", {
@@ -26,7 +14,7 @@ const getName = async (value) => {
 };
 
 //ライブラリcolorthiefを使って画像のメインカラーを調べ、
-//さらに上記の関数を使って一番近い色を返す。画像のeventListnerに入れる。
+//さらに上記の関数を使って一番近い色を返す。画像のeventListnerに入れる関数。
 const getRgb = (e) => {
   let pic = e.target;
   if (pic.complete) {
@@ -53,14 +41,42 @@ const getRgb = (e) => {
   }
 };
 
-
+//各画像がクリックされたときgetRgbという関数が走るように仕込む。
 let picArray = document.getElementsByTagName("img");
 
 for (let i = 0; i < picArray.length; i++) {
   picArray[i].addEventListener("click", getRgb);
 }
 
+//デバイス中の画像を選んで表示する。
+//画像を表示するハコをpreviewという変数にしておく。
+const preview = document.getElementById("preview")
 
-fetch("http://localhost:5000/getname")
-  .then((res) => res.json())
-  .then((data) => console.log(data));
+//画像を選ぶinputをinputという変数にしておく。
+const input = document.getElementById("input")
+
+//inputで画像が選ばれる＝changeがあるとdisplayPic(画像を表示する関数）が走るようにしておく。
+input.addEventListener("change", displayPic)
+
+//previewPicを定義する
+function displayPic(event){
+
+  //まずevent.target(=input)が読み込んだデータは配列なので一つ選んで変数にする。
+  let file = event.target.files[0]
+
+  //次に、inputが読み込んだ時点で、FileReaderのインスタンスができるようにする。
+  //let reader = new FileReader()だけでは空っぽだが、
+  //reader.readAsDataURL(file)が走ることでreaderの中にfileの情報が入る。
+  let reader = new FileReader();
+  reader.readAsDataURL(file)
+
+  //readerの読み込みが完了（onload)したときに、
+  //読み込まれたファイルをsrcにもつimg要素ができて、previewにつく関数を定義する。
+  //ここでのevent.targetはreader、eventはonload。
+  //これで選ばれたファイルが表示されるようになる。
+    reader.onload=function(event){
+      let previewPic = document.createElement("img");
+      previewPic.src = reader.result;
+      preview.append(previewPic)  
+  }}
+
