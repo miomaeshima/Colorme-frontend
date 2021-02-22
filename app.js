@@ -79,7 +79,7 @@ function displayPic(event) {
     previewPic.id = "previewPic";
     let previewPicName = document.createElement("div");
     previewPicName.id = "previewPicName";
-    previewPicName.class = "namebox";
+    previewPicName.classList.add("namebox");
     //clickすると色の名前が返っておくようにgetRgbも仕込んでおく。
     previewPic.addEventListener("click", getRgb);
     previewPicBack.append(previewPic, previewPicName);

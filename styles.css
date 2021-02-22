@@ -3,15 +3,6 @@ body {
   flex-direction: column;
 }
 
-/* #title {
-  display: flex;
-  font-size: 60px;
-  writing-mode: vertical-rl;
-  align-items: center;
-  justify-content: center;
-  padding-top: 70px;
-  padding-bottom: 70px;
-} */
 .container {
   display: flex;
   flex-direction: row;
@@ -44,8 +35,4 @@ img {
   padding-bottom: 70px;
   color: white;
 }
-/* #fujisanName {
-  width: 600px;
-  min-height: 100vh;
-  background-color: darksalmon;
-} */
+
