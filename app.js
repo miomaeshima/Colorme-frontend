@@ -49,34 +49,39 @@ for (let i = 0; i < picArray.length; i++) {
 }
 
 //デバイス中の画像を選んで表示する。
-//画像を表示するハコをpreviewという変数にしておく。
-const preview = document.getElementById("preview")
+//画像を表示するハコをpreviewPicBackという変数にしておく。
+const previewPicBack = document.getElementById("previewPicBack");
 
 //画像を選ぶinputをinputという変数にしておく。
-const input = document.getElementById("input")
+const input = document.getElementById("input");
 
 //inputで画像が選ばれる＝changeがあるとdisplayPic(画像を表示する関数）が走るようにしておく。
-input.addEventListener("change", displayPic)
+input.addEventListener("change", displayPic);
 
 //previewPicを定義する
-function displayPic(event){
-
+function displayPic(event) {
   //まずevent.target(=input)が読み込んだデータは配列なので一つ選んで変数にする。
-  let file = event.target.files[0]
+  let file = event.target.files[0];
 
   //次に、inputが読み込んだ時点で、FileReaderのインスタンスができるようにする。
   //let reader = new FileReader()だけでは空っぽだが、
   //reader.readAsDataURL(file)が走ることでreaderの中にfileの情報が入る。
   let reader = new FileReader();
-  reader.readAsDataURL(file)
+  reader.readAsDataURL(file);
 
   //readerの読み込みが完了（onload)したときに、
   //読み込まれたファイルをsrcにもつimg要素ができて、previewにつく関数を定義する。
-  //ここでのevent.targetはreader、eventはonload。
+  //ちなみに、ここでのevent.targetはreader、eventはonload。
   //これで選ばれたファイルが表示されるようになる。
-    reader.onload=function(event){
-      let previewPic = document.createElement("img");
-      previewPic.src = reader.result;
-      preview.append(previewPic)  
-  }}
-
+  reader.onload = function (event) {
+    let previewPic = document.createElement("img");
+    previewPic.src = reader.result;
+    previewPic.id = "previewPic";
+    let previewPicName = document.createElement("div");
+    previewPicName.id = "previewPicName";
+    previewPicName.classList.add("namebox");
+    //clickすると色の名前が返っておくようにgetRgbも仕込んでおく。
+    previewPic.addEventListener("click", getRgb);
+    previewPicBack.append(previewPic, previewPicName);
+  };
+}
